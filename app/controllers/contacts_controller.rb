@@ -1,4 +1,5 @@
 class ContactsController < AbstractApiController
+    before_action :authenticate_user!
     def index
         @contacts = Contact.all 
         render json: @contacts
