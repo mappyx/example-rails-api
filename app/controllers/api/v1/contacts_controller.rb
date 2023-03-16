@@ -1,7 +1,7 @@
-class ContactsController < AbstractApiController
+class Api::V1::ContactsController < AbstractApiController
     before_action :authenticate_user!
     def index
-        @contacts = Contact.all 
+        @contacts = Contact.all
         render json: @contacts
     end 
 
@@ -14,7 +14,7 @@ class ContactsController < AbstractApiController
         @contact = Contact.create(
             fullname: params[:fullname],
             phone_number: params[:phone_number],
-            user_id: params[:user_id]
+            user_id: current_user.id
         )
         render json: @contact
     end 
